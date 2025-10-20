@@ -1,0 +1,94 @@
+:root{
+  --bg:#1b7b9e;       /* light blue background */
+  --card:#ffffff;
+  --muted:#173a81;
+  --accent:#0f766e;   /* teal accent (kept subtle for corporate look) */
+  --accent-2:#0b5f60;
+  --nav-bg: rgba(8,12,20,0.32);
+  --nav-text:#ffffff;
+  --container:1150px;
+  --radius:12px;
+  --shadow: 0 8px 28px rgba(12,18,28,0.06);
+  --pad:24px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;color:#0f172a;background:var(--bg);line-height:1.5}
+.container{max-width:var(--container);margin:0 auto;padding:0 20px}
+
+/* Header / overlay */
+.overlay-header{position:relative;color:var(--nav-text)}
+.overlay-header .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;position:relative;z-index:30}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+.logo{width:56px;height:56px;object-fit:contain;border-radius:8px}
+.brand-text{font-weight:700;font-size:18px}
+.nav-list{display:flex;gap:16px;align-items:center;margin:0;padding:0;list-style:none}
+.nav-list a{color:var(--nav-text);text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px;transition:background .18s}
+.nav-list a:hover{background:rgba(255,255,255,0.06)}
+.cta{border:1px solid rgba(255,255,255,0.14);padding:8px 12px}
+
+/* Mobile toggle */
+.mobile-toggle{display:none;background:transparent;border:0;color:inherit;font-size:22px}
+@media (max-width:900px){
+  .nav-list{display:none;position:absolute;right:18px;top:64px;flex-direction:column;background:rgba(8,12,20,0.95);padding:12px;border-radius:10px}
+  .mobile-toggle{display:block}
+}
+
+/* Hero (layer 1) */
+.hero{display:flex;align-items:center;min-height:420px;background-position:center;background-size:cover;color:#fff;position:relative;z-index:10}
+.hero::after{content:"";position:absolute;left:0;right:0;top:0;bottom:0;background:linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.35));z-index:1}
+.hero-inner{position:relative;z-index:2;padding:72px 0}
+.hero-title{margin:0 0 12px;font-size:30px;max-width:900px}
+.hero-sub{margin:0 0 18px;color:rgba(255,255,255,0.92);max-width:700px}
+.hero-actions{display:flex;gap:12px}
+.btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 6px 20px rgba(11,95,96,0.12)}
+.btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.18)}
+
+/* Layers / sections */
+.layer{padding:36px 0}
+.layer-inner{padding:var(--pad) 0}
+.card{background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:14px 0}
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.value-card{background:transparent;padding:14px;border-radius:8px}
+.cards-grid .card{min-height:120px}
+
+/* content */
+.content{padding:40px 0}
+.lead{color:var(--muted)}
+.link{color:var(--accent);text-decoration:none;font-weight:600}
+.values-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+.input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef0}
+textarea{min-height:120px}
+.form-buttons{display:flex;gap:8px;margin-top:12px}
+
+/* footers */
+.footer-row{display:flex;justify-content:space-between;align-items:center;padding:18px 0;color:var(--muted)}
+.site-footer{background:transparent;padding:18px 0}
+
+/* small header variant for inner pages */
+.overlay-header.small{background:linear-gradient(180deg, rgba(8,12,20,0.55), rgba(8,12,20,0.55));position:sticky;top:0;backdrop-filter:blur(4px)}
+
+/* smooth fade animations (layered effect) */
+.fade{opacity:0;transform:translateY(8px);animation:fadeIn .6s ease forwards}
+.fade[style*="animation-delay"]:not([style*="animation-delay"]){} /* noop */
+
+@keyframes fadeIn{
+  to{opacity:1;transform:none}
+}
+
+/* Responsive */
+@media (max-width:1100px){
+  .cards-grid{grid-template-columns:repeat(2,1fr)}
+  .values-grid{grid-template-columns:repeat(2,1fr)}
+  .values-list{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:720px){
+  .cards-grid{grid-template-columns:1fr}
+  .values-grid{grid-template-columns:1fr}
+  .hero-title{font-size:22px}
+  .contact-grid{grid-template-columns:1fr}
+}
